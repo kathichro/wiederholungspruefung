@@ -39,13 +39,13 @@ def lists():
 
 @app.route('/lists/<int:id>')
 def list(id):
+    db_con = db.get_db_con()
     sql_query_1 = f'SELECT name FROM list WHERE id={id}'
     sql_query_2 = (
         'SELECT id, complete, description FROM todo '
         f'JOIN todo_list ON todo_id=todo.id AND list_id={id} '
         'ORDER BY id;'
     )
-    db_con = db.get_db_con()
     list = {}
     list['name'] = db_con.execute(sql_query_1).fetchone()['name']
     list['todos'] = db_con.execute(sql_query_2).fetchall()

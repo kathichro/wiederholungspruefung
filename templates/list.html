@@ -7,7 +7,7 @@
 {% for todo in list.todos %}
 <li>
     <input type="checkbox" disabled=disabled id="{{ todo.id }}"
-        {% if todo.complete %} checked {%endif%}
+        {% if todo.complete %} checked {% endif %}
     >
     <label for="{{ todo.id }}">{{ todo.description }}</label>
 </li>
