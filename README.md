@@ -12,3 +12,4 @@ Then select a particular branch and `pull` the resources from that branch to get
 + [`flask`](https://github.com/hwrberlin/fswd-examples/tree/flask) branch contains example code from the "[Flask framework: URL path routing deep dive](https://hwrberlin.github.io/fswd/07-flask.html)" session.
 + [`html+css`](https://github.com/hwrberlin/fswd-examples/tree/html+css) branch contains example code from the "[Introduction to HTML and CSS](https://hwrberlin.github.io/fswd/09-html-css.html)" session.
 + [`ui`](https://github.com/hwrberlin/fswd-examples/tree/ui) branch contains example code from the "[User interfaces with WTForms and Bootstrap](https://hwrberlin.github.io/fswd/11-user-interfaces.html)" session.
++ [`sqlalchemy`](https://github.com/hwrberlin/fswd-examples/tree/sqlalchemy) branch contains example code from the "[Relational databases with Flask-SQLAlchemy](https://hwrberlin.github.io/fswd/13-sqlalchemy.html)" session.
