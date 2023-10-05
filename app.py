@@ -1,13 +1,25 @@
 from flask import Flask, render_template, redirect, url_for, request, abort, flash
 from flask_bootstrap import Bootstrap5
+from flask_login import LoginManager
+from user import User
 import forms
 
+login_manager = LoginManager()
 app = Flask(__name__)
+
+app.secret_key = 'secret_key_from_katharina_wiederholungspruefung'
 
 app.config.from_mapping(
     SECRET_KEY = 'secret_key_just_for_dev_environment',
     BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'
 )
+
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    from user import User
+    return User.get(user_id)
 
 from db import db, Todo, List, insert_sample  # (1.)
 
