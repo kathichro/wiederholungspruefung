@@ -1,34 +1,87 @@
 from flask import Flask, render_template, redirect, url_for, request, abort, flash
 from flask_bootstrap import Bootstrap5
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from user import User
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user 
+#from flask_wtf import FlaskForm
+from flask_bcrypt import Bcrypt
+#from wtforms import StringField, PasswordField, SubmitField
+#from wtforms.validators import  InputRequired, Length, ValidationError
+#from user import User
 import forms
 
-login_manager = LoginManager()
+
+#from db import db, User, Todo, List, insert_sample  # (1.)
+
 app = Flask(__name__)
+#db = SQLAlchemy(app) warum zweite DB? Gibt´es schon bei db.py (Moath hat geregelt)
+bcrypt = Bcrypt(app)
 
-app.secret_key = 'secret_key_from_katharina_wiederholungspruefung'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite' #kommt hier wirklich SQLite hin? Außerdem hab ich das auch bei db.py
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.py' #bei 11:50 guccken!!
 
-app.config.from_mapping(
-    SECRET_KEY = 'secret_key_just_for_dev_environment',
-    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'
-)
+#app.config['SECRET_KEY'] = 'secret_key_from_katharina_wiederholungspruefung'
 
+login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    from user import User
-    return User.get(user_id)
+    #from user import User
+   return User.query.get(int(user_id))
 
-from db import db, Todo, List, insert_sample  # (1.)
+app.config.from_mapping(
+    SECRET_KEY = 'secret_key_just_for_dev_environment_Katharina_wiederholungspruefung',
+    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'
+)
+
 
 bootstrap = Bootstrap5(app)
 
 @app.route('/index')
 @app.route('/')
 def index():
-    return redirect(url_for('todos'))
+    return redirect(url_for('todos')) #muss ich hier return render_template ('login.html') machen? ICH DENKE JA
+                                        #so kommt es nämlich beim starten der seite zuerst zu login :)
+                                        #muss mir halt überlegen was die startseite sein soll....
+#überall einfügen "@login_required" ?? Weil soll man ja eig alles nur können wenn man eingeloggt ist 
+
+
+@app.route('/login', methods=['GET', 'Post'])
+def login():
+    form =forms.LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first() #zum schauen, ob der User in der Datenbank existiert existiert
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('todos'))
+    return render_template('login.html', form=form)
+
+@app.route('/register',  methods=['GET', 'Post'])
+def register():
+    form = forms.RegisterForm()
+
+    if request.method == 'POST':
+
+        existing_user_username = User.query.filter_by(
+           username=form.username.data).first()
+        if not existing_user_username:
+            hashed_password = bcrypt.generate_password_hash(form.password.data)
+            new_user = User(username=form.username.data, password=hashed_password)
+            db.session.add(new_user) #Das geht bestimmt nicht, weil ich kein datenbank.db hab...
+            db.session.commit() # Das gilt für das denke ich auch mal....
+            return redirect(url_for('login'))
+
+    return render_template('register.html', form=form)
+
+@app.route('/logout',  methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 
 @app.route('/todos/', methods=['GET', 'POST'])
 def todos():
@@ -118,3 +171,5 @@ def ex(id):
         return render_template('ex2.html')
     else:
         abort(404)
+
+from db import db, User, Todo, List, insert_sample  # (1.) wichtig hier
