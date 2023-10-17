@@ -2,6 +2,8 @@ import click
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import orm
 from app import app
+from flask_login import UserMixin
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite'
 
@@ -77,3 +79,10 @@ def insert_sample():
     # Add all objects to the queue and commit them to the database
     db.session.add_all([todo1, todo2, todo3, todo4, todo5, list1, list2, list3])
     db.session.commit()
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+
+
