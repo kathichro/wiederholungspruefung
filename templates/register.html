@@ -1,0 +1,58 @@
+<!DOCTYPE html> <!--Das ist nur Roh, Überarbeiten wie es schön aussieht! -->
+<html lang=en>
+
+ <head>
+      <title>Registrierung</title>  
+ </head>
+
+<body>
+     <h1>Registrierungsseite</h1>
+
+     <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+           {{ form.password }}
+           {{ form.submit }}
+     </form>
+
+      <a href="{{url_for('login')}}">Haben Sie bereits einen Account? Klicken Sie hier</a>
+</body> 
+</html>
+<!--
+ <!doctype html> HIER GUCKEN FÜR REGISTER UND NICHT LOGIN
+<html lang=de>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <!--    <title>ToDo App</title>
+        <style>
+          
+          .custom-header #login-button {
+            display: none;
+          }
+        </style>
+    </head>
+
+
+    <body>
+        <header class="custom-header">
+          <div id="header">
+            <div id="websitename">ToDo APP</div>
+            <button id="login-button">Login</button>
+          </div>    
+        </header>
+
+        <main>
+            <H2>Login</H2>
+            <p>E-Mail</p>
+            <input type="text" placeholder="Ihre E-Mail Adresse">
+            <p>Passwort</p>
+            <input type="text" placeholder="Ihr Passwort">
+            <button>Login</button>
+        </main>
+
+        <footer>
+            <hr>
+            <a href="{{url_for('register')}}">Falls Sie sich registrieren wollen, klicken Sie hier</a>
+        </footer>
+    </body>
+</html> -->
