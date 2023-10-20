@@ -6,7 +6,7 @@
     </head>
 
 <body>
-     <h1>Loginseite</h1>
+     <h1>Login</h1>
 
      <form method="POST" action="">
         {{ form.hidden_tag() }}
@@ -18,41 +18,3 @@
       <a href="{{url_for('register')}}">Haben Sie noch keinen Account? Klicken Sie hier</a>
 </body> 
 </html>
-<!--
- <!doctype html>
-<html lang=de>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-    <!--    <title>ToDo App</title>
-        <style>
-          
-          .custom-header #login-button {
-            display: none;
-          }
-        </style>
-    </head>
-
-
-    <body>
-        <header class="custom-header">
-          <div id="header">
-            <div id="websitename">ToDo APP</div>
-            <button id="login-button">Login</button>
-          </div>    
-        </header>
-
-        <main>
-            <H2>Login</H2>
-            <p>E-Mail</p>
-            <input type="text" placeholder="Ihre E-Mail Adresse">
-            <p>Passwort</p>
-            <input type="text" placeholder="Ihr Passwort">
-            <button>Login</button>
-        </main>
-
-        <footer>
-            <hr>
-            <a href="{{url_for('register')}}">Falls Sie sich registrieren wollen, klicken Sie hier</a>
-        </footer>
-    </body>
-</html> -->
