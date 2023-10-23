@@ -3,7 +3,7 @@ title: Value Proposition
 nav_order: 1
 ---
 
-[Julius, Kathi, and Finn]
+Katharina Chroszczinsky
 {: .label }
 
 # Value proposition
@@ -18,18 +18,39 @@ nav_order: 1
 {:toc}
 </details>
 
-Mit dieser Webseite können Nutzer einfach und unkompliziert ihre Dinge, die sie zu tun haben im Blick behalten. Diese Webseite ist vor allem für Studenten gedacht, die ihre ganzen Termine, Abgaben, Hausaufgaben und anfallende Fristen im Blick behalten wollen. Gerade für Studenten, die viel selbstständigkeit an den Tag legen müssen, um erfolgreich studieren zu können, kann die Webseite eine Hilfe sein. Denn neben den ganzen Aufgaben in der Uni, fallen auch andere wichtige Tätigkeiten und Termine an im privaten Umfeld. Daher kann man bei der Webseite auch verschiedenen Listen erstellen, um diese trennen zu können.  So kann zum Beispiel eine Liste für die Uni erstellt werden, eine für die Hausarbeiten, einer für sonstige Erledigungen usw. 
-Studierenden soll es also leichter gemacht werden, ihre anfallenden Aufgaben einfach und 
-n
+## Value proposition 
 
-The purpose of our web application is to provide a platform for apartment exchange.  
-Nowadays it is getting harder and harder to find an affordable apartment - especially for prospective families who want to move into their first family-friendly apartment. 
- Older people, on the other hand, often live in an apartment that is far too large because the children have already moved out. However, very few move into a smaller apartment because they are afraid of not finding a suitable apartment, or simply do not want to deal with the stress involved associated with the process. Apartment searches in large cities are associated with a lot of effort. A platform for exchange could make things easier here and ensure that living space is used more efficiently.
+Maximaler Nutzen, minimaler Aufwand – Die To-do-App für jeden. Egal ob jung, alt, technisch begabt oder doch eher handwerklich angelehnt. Diese Anwendung bietet die ideale Lösung für jeden, der mühelos den Überblick behalten will. So leicht war Organisation noch nie!
 
-We limit ourselves to large cities and start with Berlin. We have also already defined a target group through the "PERSONA method". 
+Mit dieser To-do-Webseite können Nutzer einfach und unkompliziert den Überblick über ihre anstehenden Aufgaben behalten. Jeder von uns hat eine Vielzahl von Aufgaben, die in den verschiedenen Lebensbereichen anfallen. Dabei kann es schwer sein, alles im Blick zu behalten..
 
-The website provides motivation for all of us in the group, as we too have experienced live how our parents, after we moved out, stayed in apartments that were much too large for them and we ourselves faced enormous difficulties in finding housing. 
+Dank der verschiedenen Merkmale, wie der Benutzerfreundlichkeit, Aufgabenverwaltung, Flexibilität, Echtzeit Synchronisation und …………….., wird dem Benutzer ein einmaliges Erlebnis gegeben, einfach und schnell organisiert zu sein. Egal in welcher Lebenssituation, dank der To-do App kann das Leben ein Stück leichter gemacht werden!
 
-But also for older people an apartment exchange can be advantageous. As an example, one could imagine that an older person prefers to live on the first floor, or an elevator could be an enormous relief for these people. Moreover, they could benefit from smaller apartments, which are by far easier to keep and cheaper to rent, since many seniors suffer from old-age poverty.
+---
+
+## Persona
+
+![Persona Bild](images/persona.jpg)
+
+Bildquelle
+: https://this-person-does-not-exist.com/en
+
+---
+
+## features aligned with value proposition and persona
+
+**Benutzerfreundlichkeit**
+: Die To-Do App ist leicht zu bedienen und hat eine intuitive Benutzeroberfläche. Es erfordert nicht viel können oder Einarbeitungszeit, die Applikation in seinem vollen Umfang benutzen zu können. Da Larissa nicht viel mit Technik am Hut hat, ist die App für sie genau richtig, weil man zur Bedienung nicht viel technisches Wissen benötig.
+
+**Aufgabenverwaltung**
+: Die Webanwendung ermöglicht eine effektive Strukturierung von verschiedenen anfallenden Angelegenheiten. Durch die Option zur Erstellung von benutzerdefinierten Listen, können anfallende Aufgaben in Kategorien zusammengestellt werden. So kann Larissa besser die Übersicht behalten, indem sie beispielsweise Listen für die Kategorien Studium, Sport, Arbeit und Freizeit erstellt.
+
+**Flexibilität**
+: Da sich anfallende Aufgaben immer verändern oder auch neu hinzukommen, bietet die Anwendung einfach und schnell die Möglichkeit, seine erstellten Listen und zu erledigenden Aufgaben zu bearbeiten, erweitern oder zu löschen. Larissa kann so also die Anwendung an ihre individuellen Bedürfnisse anpassen und sich selbstständig organisieren.
+
+**Echtzeit Synchronisation**
+: Nachdem Larissa eine Aufgabe erledigt hat, wünscht sie sich die Möglichkeit, unmittelbar festzuhalten, was sie von ihrer Liste streichen kann. Es ist ihr dann von Bedeutung, dass diese Information sofort und in Echtzeit ohne Verzögerung festgehalten wird. Die ToDo-App bietet eine Echtzeit Synchronisation, so dass ohne Zeitverzögerungen und Datenverlust die vorgenommenen Änderungen sichtbar sind. Dadurch ist sie immer auf dem neuesten Stand. 
+
+
 
 
