@@ -4,10 +4,10 @@ parent: Technical Docs
 nav_order: 4
 ---
 
-[To be anounced]
+Katharina Chroszczinsky
 {: .label }
 
-# [API reference]
+# API reference
 {: .no_toc }
 
 <details open markdown="block">
