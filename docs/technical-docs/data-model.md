@@ -4,7 +4,7 @@ parent: Technical Docs
 nav_order: 3
 ---
 
-[To be anounced]
+Katharina Chroszczinsky
 {: .label }
 
 # [Data model]
