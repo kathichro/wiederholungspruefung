@@ -4,7 +4,7 @@ has_children: true
 nav_order: 2
 ---
 
-[To be anounced]
+Katharina Chroszczinsky
 {: .label }
 
-# [Technical documentation]
+# Technical documentation
