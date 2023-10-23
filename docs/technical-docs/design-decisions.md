@@ -53,20 +53,16 @@ In der Tabelle habe ich beschrieben, wie ich zu meinem Ergebnis gekommen bin, Fl
 
 
 | Flask-Erweiterung | Know-How | Komplexität | Entscheidung |
-
-| :-- | :-- | :-- | :-- |
-
+| :---------------- | :------- | :-----------| :------------|
 | **Flask-HTTPAuth** | Kein Vorwissen, ich habe davon aber schonmal gehört | Die Vorgehensweise war verständlich, allerdings gibt es dort viele Wege (basic, digest, token authentication) die Erweiterung zu implemetieren | ❌
 Ich habe mich gegen diese Anwendung entschieden, da ich mir unsicher war, welcher Weg am besten für die Applikation gewesen wäre und ich darüber auch noch kein Vorwissen hatte |
-
 | **Flask-Login** | Vorwissen durch das vorherige Projekt bereits vorhanden, in vielen Tutorials wird damit gearbeitet | Für mich am verständlichsten, weil ich während der Einarbeitung in Flask und Webseitenerstellung schon von alleine viel darüber gesehen habe | ✔️
 Da ich in dieser Flask-Erweiterung bereits über Vorwissen beherrschte und für mich auch die Anleitung in der verlinkten Seite der PowerPoint am verständlichsten war |
-
 | **Flask- Praetorian** | Kein Vorwissen vorhanden und auch noch nicht davon gehört | Wirkte für mich am Komplextesten, da viel (unbekannter) code benötigt wurde, um diese Methode zu implementieren | ❌
 Diese Methode wäre für mich als letztes in Frage gekommen, weil ich mir für diese Erweiterung am meisten Arbeit bedeutet hätte und mich dies in meinem Zeitplan verlangsamt hätte |
-
 | **Flask-User** | Etwas Vorwissen durch das vorherige Projekt vorhanden | Erforderte für mich mehr Einarbeitungszeit als Flask-Login, weil die Übersichtlichkeit und Verständlichkeit auf der verlinkten Seite nicht so verständlich war und ich mir dazu noch einige extra Tutorials angucken musste, um die | ❌
 Ich habe mich dagegen entschieden, weil ich über die Flask-Login Methode mehr wusste und auch mit dem Tutorial davon besser arbeiten konnte. Hätte ich die Implementation aber mit Flask-Login nicht hinbekommen, wäre Flask-User meine zweite Wahl gewesen |
+
 ---
 
 ## 01: Verwendung von Flask_RESTful um die API zu implementieren
@@ -105,8 +101,7 @@ Mit dieser Erweiterung konnte ich am unkompliziertesten die RESTful-API in den C
 ### Regarded options
 
 | Flask-Erweiterung | Know-How | Komplexität | Entscheidung |
-
-| :-- | :-- | :-- | :-- |
+| :---------------- | :------- | :---------- | :----------- |
 
 | **Flask-RESTful** | Ein wenig Vorwissen vorhanden durch das vorherige Web-Projekt. Da viele Entwickler mit dieser Flask-Erweiterung arbeiten, gibt es viele Möglichkeiten, sich in das Thema einzuarbeiten. | Klare Strukturen für die Erstellung der API. Ressourcen und Endpunkte können vergleichsweise leicht definiert werden. Funktionen können so angepasst werden, dass projektspezifische Anforderungen erfüllt werden. | ✔️ Ich habe mich für diese Variante entschieden, weil diese Erweiterung am unkompliziertesten und am verständlichsten für mich war. Da dies kein großes und komplexes Projekt ist, benötige ich auch nicht viele Erweiterungen, die es teilweise in den anderen gegeben hätte. |
 
@@ -115,4 +110,5 @@ Mit dieser Erweiterung konnte ich am unkompliziertesten die RESTful-API in den C
 | **Flask-RESTX** | Kein Vorwissen | Der Umfang dieser Erweiterung ist sehr hoch. Der Handhabung mit Swagger erfordert viel Einarbeitungszeit und auch die Konfiguration des response marshalling ist äußerst umfangreich | ❌ Nachdem ich mir das vorgegebene Tutorial durchgesehen hatte, empfand ich die gesamte Erweiterung als äußerst komplex. Da ich bereits die beiden oben genannten Erweiterungen in Betracht gezogen hatte, fiel meine Entscheidung gegen Flask-RESTX recht zügig, da ich bereits gute Alternativen in Betracht gezogen hatte. |
 
 | **Flask-Smorest** | Kein Vorwissen. Hier kamen im Tutorial viele Begriffe auf, von denen ich bisher noch nichts gehört habe. | Die Integration sowie Dokumentation der API wird mit OpenAPI und Swagger unterstützt. Durch die vielen möglichen Funktionen wäre ein Overhead gut möglich | ❌ Da mir die Begrifflichkeiten wie OpenAI, ETag und Pagination, sowie auch die dort verwendeten Methoden unbekannt waren, hätte ich sehr viel Zeitaufwand investieren müssen, mich darin einzuarbeiten. |
+
 ---
