@@ -3,8 +3,8 @@ title: Home
 nav_order: 0
 ---
 
-# [To-Do Webapplikation ]
-[Wiederholungsprüfung ]
+# To-Do Webapplikation 
+Wiederholungsprüfung 
 
 ## Katharina Vanessa Chroszczinsky
 
