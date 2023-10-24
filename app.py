@@ -39,16 +39,19 @@ app.config.from_mapping(
 
 bootstrap = Bootstrap5(app)
 
+#Anfangsseite Login und nicht mehr todos
 @app.route('/index')
-@app.route('/')
+@app.route('/') 
 def index():
-    return redirect(url_for('todos')) #muss ich hier return render_template ('login.html') machen? ICH DENKE JA
+    return redirect(url_for('login')) #muss ich hier return render_template ('login.html') machen? ICH DENKE JA
                                         #so kommt es nämlich beim starten der seite zuerst zu login :)
                                         #muss mir halt überlegen was die startseite sein soll....
 #überall einfügen "@login_required" ?? Weil soll man ja eig alles nur können wenn man eingeloggt ist 
 
 
+#Code für den Login
 @app.route('/login', methods=['GET', 'Post'])
+@login_required  
 def login():
     form =forms.LoginForm()
     if form.validate_on_submit():
@@ -59,7 +62,10 @@ def login():
                 return redirect(url_for('todos'))
     return render_template('login.html', form=form)
 
+
+#Code für Registierung
 @app.route('/register',  methods=['GET', 'Post'])
+@login_required  
 def register():
     form = forms.RegisterForm()
 
@@ -70,28 +76,46 @@ def register():
         if not existing_user_username:
             hashed_password = bcrypt.generate_password_hash(form.password.data)
             new_user = User(username=form.username.data, password=hashed_password)
-            db.session.add(new_user) #Das geht bestimmt nicht, weil ich kein datenbank.db hab...
-            db.session.commit() # Das gilt für das denke ich auch mal....
+            db.session.add(new_user) 
+            db.session.commit() 
             return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
 
+
+#Code für Logout
 @app.route('/logout',  methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
+#Code zum Löschen des Accounts
+@app.route('/delete', methods=['GET', 'POST'])
+@login_required  
+def delete_account():
+    if request.method == 'POST':
+        db.session.delete(current_user) 
+        db.session.commit()
+        logout_user()  
+        flash('Ihr Account wurde erfolgreich gelöscht')
+        return redirect(url_for('index'))  
+    return render_template('account_delete.html')  
+
+
 
 @app.route('/todos/', methods=['GET', 'POST'])
+@login_required  
 def todos():
     form = forms.CreateTodoForm()
     if request.method == 'GET':
-        todos = db.session.execute(db.select(Todo).order_by(Todo.id)).scalars()  # !!
+        #todos = db.session.execute(db.select(Todo).order_by(Todo.id)).scalars()  # !!
+        ########todos = db.session.query.filter_by(user_id=current_user.id).order_by(Todo.id).all()
+        todos = db.session.query(Todo).filter_by(user_id = current_user.id) ####################################
         return render_template('todos.html', todos=todos, form=form)
     else:  # request.method == 'POST'
         if form.validate():
-            todo = Todo(description=form.description.data)  # !!
+            todo = Todo(description=form.description.data, user_id=current_user.id)  # !!
             db.session.add(todo)  # !!
             db.session.commit()  # !!
             flash('Todo has been created.', 'success')
@@ -100,8 +124,10 @@ def todos():
         return redirect(url_for('todos'))
 
 @app.route('/todos/<int:id>', methods=['GET', 'POST'])
+@login_required  
 def todo(id):
-    todo = db.session.get(Todo, id)  # !!
+    #todo = db.session.get(Todo, id)  # !!
+    todo = db.session.query(Todo).filter_by(user_id = current_user.id, id=id).first() #################################
     form = forms.TodoForm(obj=todo)  # (2.)  # !!
     if request.method == 'GET':
         if todo:
@@ -132,11 +158,13 @@ def todo(id):
             return redirect(url_for('todo', id=id))
 
 @app.route('/lists/')
+@login_required  
 def lists():
     lists = db.session.execute(db.select(List).order_by(List.name)).scalars()  # (6.)  # !!
     return render_template('lists.html', lists=lists)
 
 @app.route('/lists/<int:id>')
+@login_required  
 def list(id):
     list = db.session.get(List, id)  # !!
     if list is not None:
@@ -172,4 +200,4 @@ def ex(id):
     else:
         abort(404)
 
-from db import db, User, Todo, List, insert_sample  # (1.) wichtig hier
+from db import db, User, Todo, List, insert_sample  # Code hat nicht funktioniert, wenn dieser Import oben war, deshlab ist er hier unten (weil es so funktioniert)
