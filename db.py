@@ -15,6 +15,8 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean, default=False)
     description = db.Column(db.String, nullable=False)
     lists = db.relationship('List', secondary='todo_list', back_populates='todos')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    user = db.relationship('User', back_populates = 'todos')
 
     def populate_lists(self, list_ids):
         lists = []
@@ -27,6 +29,9 @@ class List(db.Model):
     name = db.Column(db.String, nullable=False)
     todos = db.relationship(Todo, secondary='todo_list', back_populates='lists')
     complete = False
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    user = db.relationship('User', back_populates = 'lists')
+
     
     @orm.reconstructor
     def check_complete(self):
@@ -84,5 +89,8 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    todos = db.relationship('Todo', back_populates = 'user')
+    lists = db.relationship('List', back_populates = 'user')
+
 
 
