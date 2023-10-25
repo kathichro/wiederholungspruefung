@@ -25,7 +25,7 @@ Katharina Chroszczinsky
 
 Mit dieser To-do-Webseite können Nutzer einfach und unkompliziert den Überblick über ihre anstehenden Aufgaben behalten. Jeder Mensch hat eine Vielzahl von Aufgaben, die in den verschiedenen Lebensbereichen anfallen. Dabei kann es schwer sein, alles im Blick zu behalten..
 
-Die App ist benutzerfreundlich aufbereitet und Aufgaben können leicht verwaltet werden. Daten können flexibel und unkompliziert verändert oder ertsellt werden und durch die Speicherung der Daten in Echtzeit geht nichts verloren. Durch einen eigenen Useraccount, kann man sich von verschiedenen Devices auf der Website anmelden und hat so immer seine eigenen Listen und Aufgaben zur Verfügung!
+Die App ist benutzerfreundlich aufbereitet und Aufgaben können leicht verwaltet werden. Daten können flexibel und unkompliziert verändert oder erstellt werden und durch die Speicherung der Daten in Echtzeit geht nichts verloren. Durch einen eigenen Useraccount, kann man sich von verschiedenen Devices auf der Website anmelden und hat so immer seine eigenen Listen und Aufgaben zur Verfügung!
 
 Dem Benutzer wird ein einmaliges Erlebnis gegeben, einfach und schnell organisiert zu sein. Egal in welcher Lebenssituation, dank der To-do App kann das Leben ein Stück leichter gemacht werden!
 
