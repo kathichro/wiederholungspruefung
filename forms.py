@@ -24,18 +24,7 @@ class RegisterForm(FlaskForm):
         min=5, max=25)], render_kw={"placeholder": "Passwort"})
 
     submit = SubmitField("Register") #muss ich hier register nhemen wegen des Klassennamens oder ist das egal?
-
-    
-  # def validate_username(self, username):
-  #     existing_user_username = db.User.query.filter_by(
-  #         username=username.data).first()
-  #     
-  #     if existing_user_username:
-  #         raise ValidationError(
-  #             "Dieser Benutzername existiert bereits. Bitte nehmen Sie einen anderen Namen!"
-  #         )
         
-
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(
         min=5, max=30)], render_kw={"placeholder": "Benutzername"})
@@ -44,3 +33,7 @@ class LoginForm(FlaskForm):
         min=5, max=25)], render_kw={"placeholder": "Passwort"})
 
     submit = SubmitField("Login")
+
+
+class DeleteAccount(FlaskForm):
+    submit = SubmitField('DELETE ACCOUNT')
