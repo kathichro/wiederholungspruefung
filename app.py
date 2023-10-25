@@ -5,10 +5,12 @@ from flask_login import LoginManager
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user 
 #from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
+#from flask_restful import Api, Resource, reqparse, abort
 #from wtforms import StringField, PasswordField, SubmitField
 #from wtforms.validators import  InputRequired, Length, ValidationError
 #from user import User
 import forms
+
 
 
 #from db import db, User, Todo, List, insert_sample  # (1.)
@@ -16,6 +18,7 @@ import forms
 app = Flask(__name__)
 #db = SQLAlchemy(app) warum zweite DB? Gibt´es schon bei db.py (Moath hat geregelt)
 bcrypt = Bcrypt(app)
+#api = Api(app)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite' #kommt hier wirklich SQLite hin? Außerdem hab ich das auch bei db.py
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.py' #bei 11:50 guccken!!
@@ -39,19 +42,15 @@ app.config.from_mapping(
 
 bootstrap = Bootstrap5(app)
 
-#Anfangsseite Login und nicht mehr todos
+
 @app.route('/index')
 @app.route('/') 
 def index():
-    return redirect(url_for('login')) #muss ich hier return render_template ('login.html') machen? ICH DENKE JA
-                                        #so kommt es nämlich beim starten der seite zuerst zu login :)
-                                        #muss mir halt überlegen was die startseite sein soll....
-#überall einfügen "@login_required" ?? Weil soll man ja eig alles nur können wenn man eingeloggt ist 
+    return redirect(url_for('todos')) 
 
 
 #Code für den Login
 @app.route('/login', methods=['GET', 'Post'])
-@login_required  
 def login():
     form =forms.LoginForm()
     if form.validate_on_submit():
@@ -93,14 +92,15 @@ def logout():
 #Code zum Löschen des Accounts
 @app.route('/delete', methods=['GET', 'POST'])
 @login_required  
-def delete_account():
+def delete():
+    form = forms.DeleteAccount() # 
     if request.method == 'POST':
         db.session.delete(current_user) 
         db.session.commit()
         logout_user()  
         flash('Ihr Account wurde erfolgreich gelöscht')
         return redirect(url_for('index'))  
-    return render_template('account_delete.html')  
+    return render_template('account_delete.html', form=form)  
 
 
 
