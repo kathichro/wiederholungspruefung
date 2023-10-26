@@ -63,8 +63,8 @@ resource_fields = {
 class api_path(Resource):
 
     @marshal_with(resource_fields)
-    def get(self, todo_id):
-        if id:
+    def get(self, todo_id=None):
+        if todo_id:
             todo = db.session.query(Todo).filter_by(user_id = current_user.id, id = todo_id).first()
             if todo:
                 return todo
@@ -100,7 +100,7 @@ class api_path(Resource):
         abort(404, "Todo nicht gefunden!")
 
         
-api.add_resource(api_path, "/api/todos", "/api/todos/<int:id>")
+api.add_resource(api_path, "/api/todos/", "/api/todos/<int:todo_id>")
 
 
 #Code für den Login
