@@ -1,17 +1,31 @@
 {% extends 'base.html' %}
 
 {% block HEADER %}
-	<h2>{% block TITLE %}Account löschen{% endblock %}</h2>
+	<h2 >{% block TITLE %}Account löschen{% endblock %}</h2>
 {% endblock %}
 
 
 
 {% block CONTENT %}
-<form action="{{ url_for('delete') }}" method="post"
-    class="row row-cols-auto g-2 pt-3">
-    {{ form.csrf_token }}
-    <p>Sind Sie sicher, dass Sie diesen Account löschen möchten?</p>
-    <div class="col">{{ form.submit(class='btn btn-danger') }}</div> 
-</form>
-{% endblock %} 
+<div class="account-delete-form">
+    <form action="{{ url_for('delete') }}" method="post" class="row row-cols-auto g-2 pt-3">
+        {{ form.csrf_token }}
+        <p>Sind Sie sicher, dass Sie diesen Account löschen möchten?</p>
+    </form>
+    <div class="col text-center" style="margin-top: 20px;">
+        {{ form.submit(class='btn btn-danger') }}
+        <a href="{{url_for('todos')}}"><button class=" btn btn-primary">back to todos</button></a> 
+    </div>
+</div>
+<style>
+    .account-delete-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
+
+ 
 
