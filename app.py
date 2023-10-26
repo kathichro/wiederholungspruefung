@@ -117,8 +117,7 @@ def login():
 
 
 #Code für Registierung
-@app.route('/register',  methods=['GET', 'Post'])
-@login_required  
+@app.route('/register',  methods=['GET', 'Post'])  
 def register():
     form = forms.RegisterForm()
 
@@ -149,11 +148,12 @@ def logout():
 def delete():
     form = forms.DeleteAccount() # 
     if request.method == 'POST':
-        db.session.delete(current_user) 
-        db.session.commit()
-        logout_user()  
-        flash('Ihr Account wurde erfolgreich gelöscht')
-        return redirect(url_for('index'))  
+        if form.validate_on_submit():
+          db.session.delete(current_user) 
+          db.session.commit()
+          logout_user()  
+          flash('Ihr Account wurde erfolgreich gelöscht')
+          return redirect(url_for('index'))  
     return render_template('account_delete.html', form=form)  
 
 
