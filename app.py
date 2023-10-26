@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user 
 #from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
-#from flask_restful import Api, Resource, reqparse, abort
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 #from wtforms import StringField, PasswordField, SubmitField
 #from wtforms.validators import  InputRequired, Length, ValidationError
 #from user import User
@@ -18,7 +18,7 @@ import forms
 app = Flask(__name__)
 #db = SQLAlchemy(app) warum zweite DB? Gibt´es schon bei db.py (Moath hat geregelt)
 bcrypt = Bcrypt(app)
-#api = Api(app)
+api = Api(app)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite' #kommt hier wirklich SQLite hin? Außerdem hab ich das auch bei db.py
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.py' #bei 11:50 guccken!!
@@ -47,6 +47,60 @@ bootstrap = Bootstrap5(app)
 @app.route('/') 
 def index():
     return redirect(url_for('todos')) 
+
+method_args = reqparse.RequestParser()
+method_args.add_argument("description", type=str, help="Beschreibt, was zu tun ist. Ist erforderlich!", required=True)
+method_args.add_argument("complete", type=bool, help="Sagt, ob ein ToDo fertog ist oder nicht")
+
+resource_fields = {
+    'id': fields.Integer,
+    'description': fields.String,
+    'complete': fields.Boolean,
+    'user_id': fields.Integer
+}
+
+
+class api_path(Resource):
+
+    @marshal_with(resource_fields)
+    def get(self, todo_id):
+        if id:
+            todo = db.session.query(Todo).filter_by(user_id = current_user.id, id = todo_id).first()
+            if todo:
+                return todo
+        else:
+            todos = db.session.query(Todo).filter_by(user_id = current_user.id).all()
+            return todos
+        
+    def post(self):
+        arguments = method_args.parse_args()
+        if not arguments.description:
+            abort(400, message= 'Beschreibung fehlt')
+        todo = Todo(description = arguments.description, user_id = current_user.id)
+        db.session.add(todo)
+        db.session.commit()
+        return 201, todo
+    
+    def patch(self, todo_id):
+        arguments = method_args.parse_args()
+        todo = db.session.query(Todo).filter_by(user_id = current_user.id, id = todo_id).first()
+        if todo:    
+            if arguments.description:
+                todo.description = arguments.description
+                todo.complete = todo.complete if not arguments.complete else arguments.complete
+                return 204, todo
+        abort(400, message = "Etwas ist schiefgelaufen!")
+
+    def delete(self, todo_id):
+        todo = db.session.query(Todo).filter_by(user_id = current_user.id, id = todo_id).first()
+        if todo:
+            db.session.delete(todo)
+            db.session.commit
+            return 201, "Erfolgreich gelöscht!"
+        abort(404, "Todo nicht gefunden!")
+
+        
+api.add_resource(api_path, "/api/todos", "/api/todos/<int:id>")
 
 
 #Code für den Login
