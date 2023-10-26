@@ -1,20 +1,31 @@
- <!DOCTYPE html> <!--Das ist nur Roh, Überarbeiten wie es schön aussieht! -->
+ <!DOCTYPE html> 
 <html lang=en>
 
- <head>
-      <title>Login</title>  
-    </head>
-
+<head>
+  <style>
+    .form-container {
+      margin-bottom: 20px; 
+    }
+  </style>
+</head>
 <body>
-     <h1>Login</h1>
+      {% extends 'base.html' %}
 
-     <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.username }}
-           {{ form.password }}
-           {{ form.submit }}
-     </form>
+      {% block HEADER %}
+            <h2>{% block TITLE %}Login{% endblock %}</h2>
+      {% endblock %}
+      
+      {% block CONTENT %}
+       <div class="form-container">
+             <form method="POST" action="{{ url_for('login') }}" class="row row-cols-auto g-2 pt-3">
+                  {{ form.csrf_token }}
+                  <div class="col"> {{ form.username(class='form-control') }}</div>
+                  <div class="col"> {{ form.password(class='form-control') }}</div>
+                  <div class="col">{{ form.submit(class='btn btn-primary') }}</div>
+            </form>
+       </div>
 
-      <a href="{{url_for('register')}}">Haben Sie noch keinen Account? Klicken Sie hier</a>
+       <a href="{{url_for('register')}}">Haben Sie noch keinen Account? Klicken Sie hier</a>
+      {% endblock %}
 </body> 
 </html>
