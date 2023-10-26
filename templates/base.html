@@ -28,6 +28,14 @@
                     {{ render_nav_item('todos', 'Todos') }}
                     {{ render_nav_item('lists', 'Lists') }}
                 </ul>
+            <ul class="navbar-nav d-flex">
+                <li class="nav-item ms-auto">
+                    {{ render_nav_item('logout', 'Logout') }} <!--Schriftzug für Logout hinzugefügt -->
+                </li>
+                <li class="nav-item">
+                    {{ render_nav_item('delete', 'DELETE YOUR ACCOUNT') }} <!-- Schriftzug für Account löschen hinzugefügt -->
+                </li>
+            </ul>
             </div>
         </div>
     </nav>
