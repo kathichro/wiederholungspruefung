@@ -139,7 +139,7 @@ def delete():
           db.session.delete(current_user) 
           db.session.commit()
           logout_user()  
-          flash('Ihr Account wurde erfolgreich gelöscht')
+          flash('Your account was successfully deleted')
           return redirect(url_for('index'))  
     return render_template('account_delete.html', form=form)  
 
