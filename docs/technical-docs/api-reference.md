@@ -20,7 +20,7 @@ Katharina Chroszczinsky
 </details>
 
 
-### ` def get(self, todo_id=None)`
+### `def get(self, todo_id=None)`
 
 **Route:** `/api/todos/`, `/api/todos/<int:todo_id>`
 
@@ -31,6 +31,7 @@ Katharina Chroszczinsky
 **Sample output:**
 
 ![json von api/todos](<../images/Screenshot 2023-10-27 055539.png>)
+
 
 ![json von api/todos/2](<../images/Screenshot 2023-10-27 055800.png>)
 
