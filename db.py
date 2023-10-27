@@ -15,8 +15,8 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean, default=False)
     description = db.Column(db.String, nullable=False)
     lists = db.relationship('List', secondary='todo_list', back_populates='todos')
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    user = db.relationship('User', back_populates = 'todos')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False) # Fremdschlüssel aus User hinzugefügt
+    user = db.relationship('User', back_populates = 'todos') #Beziehung zu User hergestellt
 
     def populate_lists(self, list_ids):
         lists = []
@@ -29,8 +29,8 @@ class List(db.Model):
     name = db.Column(db.String, nullable=False)
     todos = db.relationship(Todo, secondary='todo_list', back_populates='lists')
     complete = False
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    user = db.relationship('User', back_populates = 'lists')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False) # Fremdschlüssel aus User hinzugefügt
+    user = db.relationship('User', back_populates = 'lists') #Beziehung zu User hergestellt
 
     
     @orm.reconstructor
@@ -85,12 +85,13 @@ def insert_sample():
     db.session.add_all([todo1, todo2, todo3, todo4, todo5, list1, list2, list3])
     db.session.commit()
 
+#Userklasse erstellt, um Flask-Login implementieren zu können
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    todos = db.relationship('Todo', back_populates = 'user')
-    lists = db.relationship('List', back_populates = 'user')
+    todos = db.relationship('Todo', back_populates = 'user') #Beziehung zu Todo hergestellt
+    lists = db.relationship('List', back_populates = 'user') #Beziehung zu List hergestellt
 
 
 
