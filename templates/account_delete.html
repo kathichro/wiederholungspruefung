@@ -1,7 +1,8 @@
+<!--Hier habe ich den HTML-Code geschrieben, um die Seite Delete Account anzuzeigen -->
 {% extends 'base.html' %}
 
 {% block HEADER %}
-	<h2 >{% block TITLE %}Account löschen{% endblock %}</h2>
+	<h2 >{% block TITLE %}Delete Account{% endblock %}</h2>
 {% endblock %}
 
 
@@ -10,11 +11,11 @@
 <div class="account-delete-form">
     <form action="{{ url_for('delete') }}" method="post" class="row row-cols-auto g-2 pt-3">
         {{ form.csrf_token }}
-        <p>Sind Sie sicher, dass Sie diesen Account löschen möchten?</p>
+        <p>Are you sure you want to delete this account?</p>
     </form>
     <div class="col text-center" style="margin-top: 20px;">
         {{ form.submit(class='btn btn-danger') }}
-        <a href="{{url_for('todos')}}"><button class=" btn btn-primary">back to todos</button></a> 
+        <a href="{{url_for('todos')}}"><button class=" btn btn-primary">back to Todos</button></a> 
     </div>
 </div>
 <style>
