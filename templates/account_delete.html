@@ -8,23 +8,24 @@
 
 
 {% block CONTENT %}
+
+ <p>Are you sure you want to delete this account?</p>
+
 <div class="account-delete-form">
-    <form action="{{ url_for('delete') }}" method="post" class="row row-cols-auto g-2 pt-3">
-        {{ form.csrf_token }}
-        <p>Are you sure you want to delete this account?</p>
-    </form>
-    <div class="col text-center" style="margin-top: 20px;">
-        {{ form.submit(class='btn btn-danger') }}
-        <a href="{{url_for('todos')}}"><button class=" btn btn-primary">back to Todos</button></a> 
-    </div>
+
+
+<a href="{{url_for('todos')}}"><button class="btn btn-primary m-3">Back to Todos</button></a> 
+
+
+<form method="POST" action="/delete" class="row row-cols-auto g-2 pt-3 mx-auto">
+     {{ form.csrf_token }} 
+    <button type="submit" class="btn btn-danger m-3">Delete Account</button>
+    
+</form>
+ 
 </div>
-<style>
-    .account-delete-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>
+
+
 {% endblock %}
 
 
