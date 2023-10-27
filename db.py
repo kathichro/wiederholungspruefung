@@ -10,6 +10,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite'
 db = SQLAlchemy()
 db.init_app(app)
 
+#Userklasse erstellt, um Flask-Login implementieren zu können
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    todos = db.relationship('Todo', back_populates = 'user') #Beziehung zu Todo hergestellt
+    lists = db.relationship('List', back_populates = 'user') #Beziehung zu List hergestellt
+
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True, index=True)
     complete = db.Column(db.Boolean, default=False)
@@ -85,13 +93,7 @@ def insert_sample():
     db.session.add_all([todo1, todo2, todo3, todo4, todo5, list1, list2, list3])
     db.session.commit()
 
-#Userklasse erstellt, um Flask-Login implementieren zu können
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    todos = db.relationship('Todo', back_populates = 'user') #Beziehung zu Todo hergestellt
-    lists = db.relationship('List', back_populates = 'user') #Beziehung zu List hergestellt
+
 
 
 
