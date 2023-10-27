@@ -3,27 +3,15 @@ from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user 
-#from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
-#from wtforms import StringField, PasswordField, SubmitField
-#from wtforms.validators import  InputRequired, Length, ValidationError
-#from user import User
 import forms
 
 
-
-#from db import db, User, Todo, List, insert_sample  # (1.)
-
 app = Flask(__name__)
-#db = SQLAlchemy(app) warum zweite DB? Gibt´es schon bei db.py (Moath hat geregelt)
 bcrypt = Bcrypt(app)
 api = Api(app)
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.sqlite' #kommt hier wirklich SQLite hin? Außerdem hab ich das auch bei db.py
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.py' #bei 11:50 guccken!!
-
-#app.config['SECRET_KEY'] = 'secret_key_from_katharina_wiederholungspruefung'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -31,7 +19,6 @@ login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    #from user import User
    return User.query.get(int(user_id))
 
 app.config.from_mapping(
@@ -163,8 +150,6 @@ def delete():
 def todos():
     form = forms.CreateTodoForm()
     if request.method == 'GET':
-        #todos = db.session.execute(db.select(Todo).order_by(Todo.id)).scalars()  # !!
-        ########todos = db.session.query.filter_by(user_id=current_user.id).order_by(Todo.id).all()
         todos = db.session.query(Todo).filter_by(user_id = current_user.id) ####################################
         return render_template('todos.html', todos=todos, form=form)
     else:  # request.method == 'POST'
