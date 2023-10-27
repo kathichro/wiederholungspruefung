@@ -19,62 +19,65 @@ Katharina Chroszczinsky
 {:toc}
 </details>
 
-## [Section / module]
 
-### `function_definition()`
+### ` def get(self, todo_id=None)`
 
-**Route:** `/route/`
+**Route:** `/api/todos/`, `/api/todos/<int:todo_id>`
 
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
+**Methods:**  `GET`
 
-**Purpose:** [Short explanation of what the function does and why]
+**Purpose:** Um Todos im json-Format anzeigen zu lassen 
 
 **Sample output:**
 
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
+![json von api/todos](<../images/Screenshot 2023-10-27 055539.png>)
+
+![json von api/todos/2](<../images/Screenshot 2023-10-27 055800.png>)
 
 ---
 
-## [Example, delete this section] Show to-do lists
+### `def post(self)`
 
-### `get_lists()`
+**Route:** `/api/todos/`
 
-**Route:** `/lists/`
+**Methods:** `POST`
 
-**Methods:** `GET`
-
-**Purpose:** Show all to-do lists.
+**Purpose:** Um neue Todos zu erstellen
 
 **Sample output:**
 
-![get_lists() sample](../assets/images/fswd-intro_00.png)
+id:	2
+description:	"Essen kochen"
+complete:	false
+user_id:	1
 
 ---
 
-### `get_list_todos(list_id)`
+### `def patch(self, todo_id)`
 
-**Route:** `/lists/<int:list_id>`
+**Route:** `/api/todos/<int:todo_id>`
 
-**Methods:** `GET`
+**Methods:** `PATCH`
 
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
+**Purpose:** Um Todos verändern (updaten) zu können
 
 **Sample output:**
 
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
+id:	2
+description:	"Essen für Kinder kochen"
+complete:	false
+user_id:	1
 
 ---
 
-## [Example, delete this section] Insert sample data
+### `def delete(self, todo_id)`
 
-### `run_insert_sample()`
+**Route:** `/api/todos/<int:todo_id>`
 
-**Route:** `/insert/sample`
+**Methods:** `DELETE`
 
-**Methods:** `GET`
-
-**Purpose:** Flush the database and insert sample data set
+**Purpose:** Um Daten von dem User zu löschen
 
 **Sample output:**
 
-Browser shows: `Database flushed and populated with some sample data.`
+Kein Output
