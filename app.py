@@ -12,8 +12,8 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 api = Api(app)
 
-
-login_manager = LoginManager()
+#für Flask-Login
+login_manager = LoginManager() 
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
@@ -35,9 +35,10 @@ bootstrap = Bootstrap5(app)
 def index():
     return redirect(url_for('todos')) 
 
+#API Implementation
 method_args = reqparse.RequestParser()
 method_args.add_argument("description", type=str, help="Beschreibt, was zu tun ist. Ist erforderlich!", required=True)
-method_args.add_argument("complete", type=bool, help="Sagt, ob ein ToDo fertog ist oder nicht")
+method_args.add_argument("complete", type=bool, help="Sagt, ob ein To-Do fertig ist oder nicht")
 
 resource_fields = {
     'id': fields.Integer,
@@ -109,7 +110,6 @@ def register():
     form = forms.RegisterForm()
 
     if request.method == 'POST':
-
         existing_user_username = User.query.filter_by(
            username=form.username.data).first()
         if not existing_user_username:
@@ -124,7 +124,7 @@ def register():
 
 #Code für Logout
 @app.route('/logout',  methods=['GET', 'POST'])
-@login_required
+@login_required #überall ab hier login_required, damit User nur eingeloggt Aktionen ausführen können und auf die Seiten zugreifen können
 def logout():
     logout_user()
     return redirect(url_for('login'))
@@ -133,7 +133,7 @@ def logout():
 @app.route('/delete', methods=['GET', 'POST'])
 @login_required  
 def delete():
-    form = forms.DeleteAccount() # 
+    form = forms.DeleteAccount()  
     if request.method == 'POST':
         if form.validate_on_submit():
           db.session.delete(current_user) 
@@ -144,13 +144,12 @@ def delete():
     return render_template('account_delete.html', form=form)  
 
 
-
 @app.route('/todos/', methods=['GET', 'POST'])
 @login_required  
 def todos():
     form = forms.CreateTodoForm()
     if request.method == 'GET':
-        todos = db.session.query(Todo).filter_by(user_id = current_user.id) ####################################
+        todos = db.session.query(Todo).filter_by(user_id = current_user.id) #sucht alle Todos für die id des current_user raus
         return render_template('todos.html', todos=todos, form=form)
     else:  # request.method == 'POST'
         if form.validate():
@@ -165,8 +164,7 @@ def todos():
 @app.route('/todos/<int:id>', methods=['GET', 'POST'])
 @login_required  
 def todo(id):
-    #todo = db.session.get(Todo, id)  # !!
-    todo = db.session.query(Todo).filter_by(user_id = current_user.id, id=id).first() #################################
+    todo = db.session.query(Todo).filter_by(user_id = current_user.id, id=id).first() ##sucht alle Todos für die id des current_user raus
     form = forms.TodoForm(obj=todo)  # (2.)  # !!
     if request.method == 'GET':
         if todo:
